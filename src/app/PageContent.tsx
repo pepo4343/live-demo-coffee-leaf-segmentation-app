@@ -111,7 +111,7 @@ const PageContent: React.FC = () => {
             // Replace '/api/upload-image' with your actual endpoint
             // Note: When sending FormData, the 'Content-Type' header is automatically set by the browser
             // to 'multipart/form-data' with the correct boundary, so you don't set it manually.
-            const apiResponse = await fetch('https://localhost:5000/process_image', {
+            const apiResponse = await fetch('https://lately-main-oryx.ngrok-free.app/process_image', {
               method: 'POST',
               body: formData, // Send the FormData object directly
             });
