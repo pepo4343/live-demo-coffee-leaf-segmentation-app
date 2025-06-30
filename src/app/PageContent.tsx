@@ -15,6 +15,7 @@ const PageContent: React.FC = () => {
     const [capturedImage, setCapturedImage] = useState<string | null>(null);
     const [message, setMessage] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(false); // For loading indicator during send
+    const [processedImage, setProcessedImage] = useState<string | null>(null);
 
     const startCamera = useCallback(async (): Promise<void> => {
         try {
@@ -119,6 +120,11 @@ const PageContent: React.FC = () => {
             if (apiResponse.ok) {
               const result = await apiResponse.json();
               console.log(result);
+              const imageBase64 = result.processed_image_base64;
+              const processedImage = "data:image/jpeg;base64,"+imageBase64;
+              setProcessedImage(processedImage)
+              console.log(processedImage);
+              
               
               setMessage(`Photo sent successfully! Server response: ${JSON.stringify(result)}`);
             } else {
@@ -192,13 +198,13 @@ const PageContent: React.FC = () => {
                 )}
 
                 {/* Display captured image if available */}
-                {capturedImage && (
+                {processedImage && (
                     <div className="mt-6 text-center">
                         <h2 className="text-xl font-semibold text-gray-700 mb-3">
-                            Captured Image:
+                            Processed Image:
                         </h2>
                         <img
-                            src={capturedImage}
+                            src={processedImage}
                             alt="Captured"
                             className="max-w-full h-auto rounded-lg shadow-md border-2 border-gray-300 mx-auto"
                         />
