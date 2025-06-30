@@ -129,9 +129,7 @@ const PageContent: React.FC = () => {
                 console.log(processedImage);
 
                 setMessage(
-                    `Photo sent successfully! Server response: ${JSON.stringify(
-                        result
-                    )}`
+                    `Photo sent successfully! Server response: OK`
                 );
             } else {
                 setMessage(`Failed to send photo: ${apiResponse.statusText}`);
@@ -196,14 +194,6 @@ const PageContent: React.FC = () => {
                     </button>
                 </div>
 
-                {/* Message display area */}
-                {message && (
-                    <p className="text-center text-sm text-gray-600 mt-2 p-2 bg-gray-50 rounded-md">
-                        {message}
-                    </p>
-                )}
-
-                {/* Display captured image if available */}
                 {capturedImage && (
                     <div className="mt-6 text-center">
                         <h2 className="text-xl font-semibold text-gray-700 mb-3">
