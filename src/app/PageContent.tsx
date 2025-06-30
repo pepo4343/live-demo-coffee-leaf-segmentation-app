@@ -118,14 +118,16 @@ const PageContent: React.FC = () => {
             //
             if (apiResponse.ok) {
               const result = await apiResponse.json();
+              console.log(result);
+              
               setMessage(`Photo sent successfully! Server response: ${JSON.stringify(result)}`);
             } else {
               setMessage(`Failed to send photo: ${apiResponse.statusText}`);
             }
 
-            setMessage(
-                "Photo sent successfully (simulated)! Check console for FormData info."
-            );
+            // setMessage(
+            //     "Photo sent successfully (simulated)! Check console for FormData info."
+            // );
             setCapturedImage(null); // Clear captured image after sending
         } catch (error: unknown) {
             console.error("Error sending photo:", error);
