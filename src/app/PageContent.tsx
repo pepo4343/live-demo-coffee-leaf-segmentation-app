@@ -117,8 +117,8 @@ const PageContent: React.FC = () => {
             });
             //
             if (apiResponse.ok) {
-            //   const result = await apiResponse.json();
-              setMessage(`Photo sent successfully! Server response: result`);
+              const result = await apiResponse.json();
+              setMessage(`Photo sent successfully! Server response: ${JSON.stringify(result)}`);
             } else {
               setMessage(`Failed to send photo: ${apiResponse.statusText}`);
             }
