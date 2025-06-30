@@ -112,23 +112,29 @@ const PageContent: React.FC = () => {
             // Replace '/api/upload-image' with your actual endpoint
             // Note: When sending FormData, the 'Content-Type' header is automatically set by the browser
             // to 'multipart/form-data' with the correct boundary, so you don't set it manually.
-            const apiResponse = await fetch('https://lately-main-oryx.ngrok-free.app/process_image', {
-              method: 'POST',
-              body: formData, // Send the FormData object directly
-            });
+            const apiResponse = await fetch(
+                "https://lately-main-oryx.ngrok-free.app/process_image",
+                {
+                    method: "POST",
+                    body: formData, // Send the FormData object directly
+                }
+            );
             //
             if (apiResponse.ok) {
-              const result = await apiResponse.json();
-              console.log(result);
-              const imageBase64 = result.processed_image_base64;
-              const processedImage = "data:image/jpeg;base64,"+imageBase64;
-              setProcessedImage(processedImage)
-              console.log(processedImage);
-              
-              
-              setMessage(`Photo sent successfully! Server response: ${JSON.stringify(result)}`);
+                const result = await apiResponse.json();
+                console.log(result);
+                const imageBase64 = result.processed_image_base64;
+                const processedImage = "data:image/jpeg;base64," + imageBase64;
+                setProcessedImage(processedImage);
+                console.log(processedImage);
+
+                setMessage(
+                    `Photo sent successfully! Server response: ${JSON.stringify(
+                        result
+                    )}`
+                );
             } else {
-              setMessage(`Failed to send photo: ${apiResponse.statusText}`);
+                setMessage(`Failed to send photo: ${apiResponse.statusText}`);
             }
 
             // setMessage(
@@ -152,7 +158,7 @@ const PageContent: React.FC = () => {
 
             <div className="bg-white p-6 rounded-xl shadow-lg w-full max-w-md">
                 {/* Video element to display camera feed */}
-                <div className="relative w-full h-64 bg-gray-200 rounded-lg overflow-hidden mb-4 border-2 border-gray-300">
+                <div className="relative w-full h-128 bg-gray-200 rounded-lg overflow-hidden mb-4 border-2 border-gray-300">
                     <video
                         ref={videoRef}
                         className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
@@ -198,10 +204,22 @@ const PageContent: React.FC = () => {
                 )}
 
                 {/* Display captured image if available */}
+                {capturedImage && (
+                    <div className="mt-6 text-center">
+                        <h2 className="text-xl font-semibold text-gray-700 mb-3">
+                            Captured Image:
+                        </h2>
+                        <img
+                            src={capturedImage}
+                            alt="Captured"
+                            className="max-w-full h-auto rounded-lg shadow-md border-2 border-gray-300 mx-auto"
+                        />
+                    </div>
+                )}
                 {processedImage && (
                     <div className="mt-6 text-center">
                         <h2 className="text-xl font-semibold text-gray-700 mb-3">
-                            Processed Image:
+                            Captured Image:
                         </h2>
                         <img
                             src={processedImage}
