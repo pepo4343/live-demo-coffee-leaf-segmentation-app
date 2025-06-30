@@ -129,7 +129,8 @@ const PageContent: React.FC = () => {
             setCapturedImage(null); // Clear captured image after sending
         } catch (error: unknown) {
             console.error("Error sending photo:", error);
-            setMessage("An error occurred while sending the photo.");
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            setMessage((error as any).toString());
         } finally {
             setIsLoading(false); // Hide loading indicator
         }
