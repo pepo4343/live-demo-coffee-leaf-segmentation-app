@@ -78,6 +78,7 @@ const PageContent: React.FC = () => {
                 // Get the image data as a base64 encoded PNG
                 const imageData: string = canvas.toDataURL("image/png");
                 setCapturedImage(imageData); // Store the captured image data in state
+                setProcessedImage(null)
                 setMessage("Photo captured! You can now send it.");
             } else {
                 setMessage("Failed to get canvas context.");
@@ -151,7 +152,7 @@ const PageContent: React.FC = () => {
     return (
         <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4 font-sans">
             <h1 className="text-3xl font-bold text-gray-800 mb-6 rounded-lg p-2 bg-white shadow-md">
-                Camera Capture App
+                Coffee Segmentation
             </h1>
 
             <div className="bg-white p-6 rounded-xl shadow-lg w-full max-w-md">
@@ -217,7 +218,7 @@ const PageContent: React.FC = () => {
                 {processedImage && (
                     <div className="mt-6 text-center">
                         <h2 className="text-xl font-semibold text-gray-700 mb-3">
-                            Captured Image:
+                            Processed Image:
                         </h2>
                         <img
                             src={processedImage}
