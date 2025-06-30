@@ -158,6 +158,7 @@ const PageContent: React.FC = () => {
             <div className="bg-white p-6 rounded-xl shadow-lg w-full max-w-md">
                 {/* Video element to display camera feed */}
                 <div className="relative w-full h-128 bg-gray-200 rounded-lg overflow-hidden mb-4 border-2 border-gray-300">
+                    <div className="absolute top-[50%] left-[50%] w-[56px] h-[56px] -translate-1/2 border border-white z-10" ></div>
                     <video
                         ref={videoRef}
                         className="absolute top-0 left-0 w-full h-full object-cover rounded-lg"
